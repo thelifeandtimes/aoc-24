@@ -24,7 +24,7 @@ I'll make notes here about how this repo works, i.e. if I add any packages, key 
 
 ### Things about Typescript
 #### Running `.ts` files in this repo
-Node runs stuff using the scripts in `package.json`. In this repo because I'll be having a lot of similarly structured files I have set up `npm run start` to be run like `npm run start --day=day0` where `day0` is the directory containing that day's files.
+Node runs stuff using the scripts in `package.json`. In this repo because I'll be having a lot of similarly structured files I have set up `npm run day` to be run like `npm run day day0` where `day0` is the directory containing that day's files.
 
 #### Import statements
 These pull in functions from my node modules to give me access to additional functionality.
