@@ -44,6 +44,48 @@
 
 import { readInput } from "../utils/fileReader"; 
 
+let total: number = 0
 const input = readInput('day0');
+const lineArray = input.split('\n');
 
-console.log("Hello World!")
+// function to get the first digit
+const findFirstDigit = (str: string): string | undefined => {
+    for (const char of str) {
+        if (!isNaN(Number(char))) {
+            return char;
+        }
+    }
+    return undefined;
+};
+// function to get the last digit
+const findLastDigit = (str: string): string | undefined => {
+    // reverse the string before checking
+    const reverseString = str.split('').reverse().join('');
+    for (const char of reverseString) {
+        if (!isNaN(Number(char))) {
+            return char;
+        }
+    }
+    return undefined;
+};
+
+const getValue = (line: string) => { 
+    console.log("the line value is: ", line);
+    const firstDigit = findFirstDigit(line);
+    const lastDigit = findLastDigit(line);
+    const stringValue = firstDigit + lastDigit;
+    console.log("from getValue Function: ", stringValue);
+    return stringValue;
+};
+
+lineArray.forEach(line => {
+    if (line.trim().length === 0) return;
+    const value = getValue(line);
+    console.log(value);
+    console.log("this should print inbetween values");
+    total += Number(value);
+    console.log("current total is: ", total);
+    return total;
+});
+
+console.log("Cumulative calibration value: ", total)
