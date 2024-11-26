@@ -23,8 +23,15 @@ For each puzzle, I am going to take the following steps:
 I'll make notes here about how this repo works, i.e. if I add any packages, key scripts, etc.
 
 ### Things about Typescript
+#### Running `.ts` files in this repo
+Node runs stuff using the scripts in `package.json`. In this repo because I'll be having a lot of similarly structured files I have set up `npm run start` to be run like `npm run start --day=day0` where `day0` is the directory containing that day's files.
+
 #### Import statements
 These pull in functions from my node modules to give me access to additional functionality.
+
+A few important things to node about imports:
+- You can only have one default export per file. This means that generally I should use 'named exports' because if I have a util file it will probably want to have multiple functions in it.
+- Named exports are supposedly better for typescript because they have better type inference. TODO I should learn about waht this really means in practice and what makes it true.
 
 #### Function Declarations
 ```
@@ -36,4 +43,10 @@ export const someName = (parameter: type): string => {...}
 - `: string` is an indication of the type that is expected out of this function
 - `=>` indicates this is an arrow function. Presumably this allows more concise syntax. (TODO: Learn more about different sorts of functions in typescrpt and where they are best used)
 
+#### Running Typescript programs
+I can do this most straightforwardly by using `ts-node` directly. To run `index.ts` I can run:
+```
+npx ts-node path/to/file/index.ts
+```
 
+Or I can TODO Learn how to set this up by running an npm script but I will figure out how to do that later.
