@@ -21,3 +21,19 @@ For each puzzle, I am going to take the following steps:
 
 ## About this repository
 I'll make notes here about how this repo works, i.e. if I add any packages, key scripts, etc.
+
+### Things about Typescript
+#### Import statements
+These pull in functions from my node modules to give me access to additional functionality.
+
+#### Function Declarations
+```
+export const someName = (parameter: type): string => {...}
+```
+- `Export` makes the declared function available to import in other files
+- `const someName` declares a constant function with the name `someName`
+- `(parameter: type)` defines a parameter of name `parameter` that must by of type `type` (TODO: Learn possible types; is this a set list or something that I can define?)
+- `: string` is an indication of the type that is expected out of this function
+- `=>` indicates this is an arrow function. Presumably this allows more concise syntax. (TODO: Learn more about different sorts of functions in typescrpt and where they are best used)
+
+
