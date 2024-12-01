@@ -23,7 +23,7 @@
 //
 //To begin, get your puzzle input.
 //
-//Answer: 
+//Answer:
 //
 //
 //You can also [Share] this puzzle.
@@ -42,7 +42,7 @@
 // if no additional element exists, print the counter value
 
 // Solution to part 1
-//import { readInput } from "../utils/fileReader"; 
+//import { readInput } from "../utils/fileReader";
 //
 //let total: number = 0
 //const input = readInput('day0');
@@ -69,7 +69,7 @@
 //    return undefined;
 //};
 //
-//const getValue = (line: string) => { 
+//const getValue = (line: string) => {
 //    console.log("the line value is: ", line);
 //    const firstDigit = findFirstDigit(line);
 //    const lastDigit = findLastDigit(line);
@@ -106,8 +106,8 @@
 // In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
 //
 // What is the sum of all of the calibration values?
-// 
-// How will I solve this? 
+//
+// How will I solve this?
 // I can do the same separating the string into an array
 // and once each line is properly parsed, I can calculate the value the same way
 // but I need to figure out how to parse each line for the digit value whether
@@ -116,26 +116,26 @@
 //
 // Attempt at solution for part 2:
 
-import { reverse } from "dns";
-import { readInput } from "../utils/fileReader"; 
+import { reverse } from 'dns';
+import { readInput } from '../utils/fileReader';
 
-let total: number = 0
+let total: number = 0;
 const input = readInput('day0');
 const lineArray = input.split('\n');
 
 //const changeWordToNumber = (line: string): string => {
 // check if the line includes any of the following:
-    // one, two, three, four, five, six, seven, eight, nine
-    // turn those into singular digits
-    // then run the same check as previously
-    // there are two issues with this current version:
-    // it checks from the front of a string, and if there is an 'overlap' like
-    // `oneight` it will turn it into `1ight` and the last digit check will 
-    // pick up 1 instead of 8 as the last digit
-    // and then it also only replaces the first instance of a word so a string
-    // like seven13asevenone5asdseven will change just to 713aseven15asdseven
-      // I think i can actually fix both of these by sticking the change word to number inside the findDigit functions
-      // this is probably not the most 'elegant' solution, but it should work
+// one, two, three, four, five, six, seven, eight, nine
+// turn those into singular digits
+// then run the same check as previously
+// there are two issues with this current version:
+// it checks from the front of a string, and if there is an 'overlap' like
+// `oneight` it will turn it into `1ight` and the last digit check will
+// pick up 1 instead of 8 as the last digit
+// and then it also only replaces the first instance of a word so a string
+// like seven13asevenone5asdseven will change just to 713aseven15asdseven
+// I think i can actually fix both of these by sticking the change word to number inside the findDigit functions
+// this is probably not the most 'elegant' solution, but it should work
 //    console.log('original string is: ', line)
 //    let numberedline = line
 //        .replace('one', '1')
@@ -159,42 +159,41 @@ const findFirstDigit = (str: string): string | undefined => {
     const match = str.match(regex);
     let numeralLine = str;
 
-    if (match) { 
+    if (match) {
         const numberMap: { [key: string]: string } = {
-            'one': '1',
-            'two': '2',
-            'three': '3',
-            'four': '4',
-            'five': '5',
-            'six': '6',
-            'seven': '7',
-            'eight': '8',
-            'nine': '9'
+            one: '1',
+            two: '2',
+            three: '3',
+            four: '4',
+            five: '5',
+            six: '6',
+            seven: '7',
+            eight: '8',
+            nine: '9',
         };
-    
-        numeralLine = str.replace(
-            match[0],
-            numberMap[match[0]]
-        );
+
+        numeralLine = str.replace(match[0], numberMap[match[0]]);
     }
 
-    console.log('After changing words to numerals the string is now: ', numeralLine);
+    console.log(
+        'After changing words to numerals the string is now: ',
+        numeralLine
+    );
 
     for (const char of numeralLine) {
-           if (!isNaN(Number(char))) {
-                return char;
-           }
+        if (!isNaN(Number(char))) {
+            return char;
+        }
     }
 
     return undefined;
-
 };
 
 // function to get the last digit
 const findLastDigit = (str: string): string | undefined => {
     // reverse the string before checking
     console.log('for finding the last digit, original string is: ', str);
-    
+
     const reverseString = str.split('').reverse().join('');
 
     console.log('the reversed string is now: ', reverseString);
@@ -205,15 +204,15 @@ const findLastDigit = (str: string): string | undefined => {
 
     if (match) {
         const reverseNumberMap: { [key: string]: string } = {
-            'eno': '1',
-            'owt': '2',
-            'eerht': '3',
-            'ruof': '4',
-            'evif': '5',
-            'xis': '6',
-            'neves': '7',
-            'thgie': '8',
-            'enin': '9'
+            eno: '1',
+            owt: '2',
+            eerht: '3',
+            ruof: '4',
+            evif: '5',
+            xis: '6',
+            neves: '7',
+            thgie: '8',
+            enin: '9',
         };
 
         reverseNumeralLine = reverseString.replace(
@@ -222,7 +221,10 @@ const findLastDigit = (str: string): string | undefined => {
         );
     }
 
-    console.log('after taking the reversed string and swapping in numerals for the first discovered number word, the string is now: ', reverseNumeralLine);
+    console.log(
+        'after taking the reversed string and swapping in numerals for the first discovered number word, the string is now: ',
+        reverseNumeralLine
+    );
 
     for (const char of reverseNumeralLine) {
         if (!isNaN(Number(char))) {
@@ -231,30 +233,27 @@ const findLastDigit = (str: string): string | undefined => {
     }
 
     return undefined;
-
 };
 
-const getValue = (line: string) => { 
-    console.log("the line value is: ", line);
+const getValue = (line: string) => {
+    console.log('the line value is: ', line);
     const firstDigit = findFirstDigit(line);
     console.log('The first digit should be: ', firstDigit);
     const lastDigit = findLastDigit(line);
     console.log('The last digit should be: ', lastDigit);
     const stringValue = firstDigit + lastDigit;
-    console.log("from getValue Function: ", stringValue);
+    console.log('from getValue Function: ', stringValue);
     return stringValue;
 };
 
-lineArray.forEach(line => {
+lineArray.forEach((line) => {
     if (line.trim().length === 0) return;
     const value = getValue(line);
     console.log(value);
-    console.log("this should print inbetween calculated line values");
+    console.log('this should print inbetween calculated line values');
     total += Number(value);
-    console.log("current total is: ", total);
+    console.log('current total is: ', total);
     return total;
 });
 
-console.log("Cumulative calibration value: ", total)
-
-
+console.log('Cumulative calibration value: ', total);
