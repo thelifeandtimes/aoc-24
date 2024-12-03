@@ -38,27 +38,34 @@ const file: string = readInput('day3');
 
 //console.log('the file is: ', file);
 
+const filterRegex = /don't\(\)[\s\S]*?do\(\)/g;
 const regexFile = /mul\((?<first>\d+),(?<second>\d+)\)/g;
 const regexEntry = /(?<first>\d+),(?<second>\d+)/;
 
-const array = file.match(regexFile);
+const filteredArray: string[] = file.split(filterRegex);
+console.log('filtered array is now: ', filteredArray);
+
+const filteredString: string = filteredArray.join('');
+console.log('filtered string is now: ', filteredString);
+
+const array = filteredString.match(regexFile);
 
 //console.log('the new array is: ', array);
 if (array !== null) {
     for (const entry of array) {
-        console.log('entry: ', entry);
+        //console.log('entry: ', entry);
         const fullEntry = entry.match(regexEntry);
         if (fullEntry?.groups) {
             const groupedEntry = fullEntry.groups as EntryValues;
-            console.log('entry values are: ', fullEntry);
-            console.log('grouped entry values are: ', groupedEntry);
+            //console.log('entry values are: ', fullEntry);
+            //console.log('grouped entry values are: ', groupedEntry);
             const entryOne: number = parseInt(groupedEntry.first);
             const entryTwo: number = parseInt(groupedEntry.second);
-            console.log('entry one is: ', entryOne);
-            console.log('entry two is: ', entryTwo);
+            //console.log('entry one is: ', entryOne);
+            //console.log('entry two is: ', entryTwo);
             const entryProduct: number = entryOne * entryTwo;
             countValue = countValue + entryProduct;
-            console.log('entry product is: ', entryProduct);
+            //console.log('entry product is: ', entryProduct);
             console.log('current count value is: ', countValue);
         }
     }
@@ -84,3 +91,5 @@ if (array !== null) {
 //
 // How would I handle part two?
 // Since I am in regex mode, I think probably the way to do this is to filter out basically anything in between a `don't()` and a `do()` instruction.
+// As a matter of fact, I think this might not be too hard to do in a super scrappy way so I'm going to try to hack it out right now.
+// yup, this worked.
